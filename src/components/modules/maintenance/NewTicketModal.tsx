@@ -59,13 +59,13 @@ export const NewTicketModal: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Unit Selector */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-slate-700 mb-1.5">
             Ubicación del Incidente
           </label>
           <select
             value={unitId}
             onChange={(e) => setUnitId(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 font-mono"
+            className="w-full px-3 py-2.5 rounded-lg bg-white border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-slate-800 font-mono shadow-xs"
             required
           >
             {units.map((u) => (
@@ -78,27 +78,27 @@ export const NewTicketModal: React.FC = () => {
 
         {/* Priority Selector */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-slate-700 mb-1.5">
             Nivel de Prioridad & Severidad
           </label>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { id: 'urgent', label: 'Urgente', desc: 'Afecta habitabilidad', color: 'border-rose-500 text-rose-300 bg-rose-950/70' },
-              { id: 'medium', label: 'Medio', desc: 'Atención 48h', color: 'border-amber-500 text-amber-300 bg-amber-950/70' },
-              { id: 'low', label: 'Bajo', desc: 'Preventivo', color: 'border-blue-500 text-blue-300 bg-blue-950/70' },
+              { id: 'urgent', label: 'Urgente', desc: 'Atención inmediata', activeColor: 'border-rose-400 text-rose-800 bg-rose-50 shadow-xs' },
+              { id: 'medium', label: 'Medio', desc: 'Atención 24-48h', activeColor: 'border-amber-400 text-amber-800 bg-amber-50 shadow-xs' },
+              { id: 'low', label: 'Bajo', desc: 'Preventivo', activeColor: 'border-blue-400 text-blue-800 bg-blue-50 shadow-xs' },
             ].map((p) => (
               <button
                 type="button"
                 key={p.id}
                 onClick={() => setPriority(p.id as Priority)}
-                className={`p-2 rounded-lg border text-left transition-all ${
+                className={`p-2.5 rounded-lg border text-left transition-all cursor-pointer ${
                   priority === p.id
-                    ? p.color + ' shadow-sm'
-                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                    ? p.activeColor
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
                 }`}
               >
                 <div className="text-xs font-semibold">{p.label}</div>
-                <div className="text-[10px] text-slate-400 font-sans mt-0.5">{p.desc}</div>
+                <div className="text-[10px] text-slate-500 font-sans mt-0.5">{p.desc}</div>
               </button>
             ))}
           </div>
@@ -106,53 +106,53 @@ export const NewTicketModal: React.FC = () => {
 
         {/* Title */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1.5">
-            Título del Reporte
+          <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            Título de la Incidencia
           </label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="ej. Fuga de agua en lavabo, cerradura trabada..."
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-100 focus:outline-none focus:border-emerald-500"
+            placeholder="ej. Fuga de agua en baño, cerradura trabada..."
+            className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-slate-800 shadow-xs"
             required
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-slate-700 mb-1.5">
             Descripción Detallada
           </label>
           <textarea
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Detalles de la avería, síntomas, acciones preliminares tomadas..."
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 resize-none leading-relaxed"
+            placeholder="Detalles de la avería, síntomas, observaciones técnicas..."
+            className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-slate-800 resize-none leading-relaxed shadow-xs"
             required
           />
         </div>
 
         {/* Reporter */}
         <div>
-          <label className="block text-xs font-medium text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-slate-700 mb-1.5">
             Persona que Reporta
           </label>
           <input
             type="text"
             value={reporterName}
             onChange={(e) => setReporterName(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs text-slate-100 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-slate-800 shadow-xs"
             required
           />
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-3 border-t border-slate-800/80 flex items-center justify-end gap-2.5">
+        <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2.5">
           <Button
             type="button"
-            variant="ghost"
+            variant="secondary"
             size="sm"
             onClick={closeNewTicketModal}
             disabled={isActionSubmitting}

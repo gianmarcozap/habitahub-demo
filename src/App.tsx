@@ -24,7 +24,7 @@ export default function App() {
   }, [fetchInitialData]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-200">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-emerald-500/20 selection:text-emerald-900">
       {/* 1. Fixed Demo Banner */}
       <DemoBanner />
 
@@ -41,8 +41,8 @@ export default function App() {
           {/* Page Body */}
           <main className="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto">
             {isLoading ? (
-              <div className="min-h-[500px] flex flex-col items-center justify-center gap-3 text-slate-400">
-                <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
+              <div className="min-h-[500px] flex flex-col items-center justify-center gap-3 text-slate-500">
+                <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
                 <p className="text-xs font-mono">Cargando datos del edificio (Las Acacias, 20 unidades)...</p>
               </div>
             ) : (

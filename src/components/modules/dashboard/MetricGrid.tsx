@@ -27,23 +27,22 @@ export const MetricGrid: React.FC = () => {
   const urgentTickets = openTickets.filter((t) => t.priority === 'urgent');
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
       {/* 1. Occupancy Rate */}
       <StatCard
         title="Tasa de Ocupación"
         value={`${occupancyPercentage}%`}
         subValue={`${occupiedUnits} de ${totalUnits} unidades con contrato`}
-        icon={<Building2 className="w-4 h-4 text-emerald-400" />}
+        icon={<Building2 className="w-4 h-4 text-emerald-600" />}
         progress={{
           value: occupancyPercentage,
-          colorClass: occupancyPercentage >= 80 ? 'bg-emerald-400' : 'bg-amber-400',
+          colorClass: occupancyPercentage >= 80 ? 'bg-emerald-600' : 'bg-amber-600',
         }}
         badge={
           <Badge variant="emerald" size="sm">
             Meta 80%+
           </Badge>
         }
-        highlightColor="emerald"
         onClick={() => setActivePage('units')}
       />
 
@@ -51,49 +50,47 @@ export const MetricGrid: React.FC = () => {
       <StatCard
         title="Ingresos Recaudados (MRR)"
         value={`$${collectedRev.toLocaleString()}`}
-        subValue={`de $${expectedRev.toLocaleString()} esperados (${collectionRate}%)`}
-        icon={<DollarSign className="w-4 h-4 text-emerald-400" />}
+        subValue={`de $${expectedRev.toLocaleString()} presupuestados (${collectionRate}%)`}
+        icon={<DollarSign className="w-4 h-4 text-emerald-600" />}
         progress={{
           value: collectionRate,
-          colorClass: 'bg-emerald-400',
+          colorClass: 'bg-emerald-600',
         }}
         badge={
           <Badge variant="emerald" size="sm">
             {collectionRate}% Cobrado
           </Badge>
         }
-        highlightColor="emerald"
         onClick={() => setActivePage('payments')}
       />
 
       {/* 3. Delinquency Rate */}
       <StatCard
-        title="Morosidad Acumulada"
+        title="Cartera en Mora"
         value={`$${delinquentRev.toLocaleString()}`}
         subValue={`${delinquentCount} unidades con deuda >15 días (${delinquencyRate}%)`}
-        icon={<AlertCircle className="w-4 h-4 text-rose-400" />}
+        icon={<AlertCircle className="w-4 h-4 text-rose-600" />}
         progress={{
-          value: delinquencyRate * 4, // scale for visual representation
-          colorClass: 'bg-rose-500',
+          value: delinquencyRate * 4,
+          colorClass: 'bg-rose-600',
         }}
         badge={
           <Badge variant="rose" size="sm" pulse={delinquentCount > 0}>
             {delinquentCount} En Mora
           </Badge>
         }
-        highlightColor="rose"
         onClick={() => openRecordPaymentModal('u-203')}
       />
 
       {/* 4. Active Incidents */}
       <StatCard
-        title="Incidencias Activas"
+        title="Incidencias Operativas"
         value={`${openTickets.length} Abiertas`}
-        subValue={urgentTickets.length > 0 ? `1 Urgente (Dpto 302 fuga de agua)` : `Sin incidentes críticos`}
-        icon={<Wrench className="w-4 h-4 text-amber-400" />}
+        subValue={urgentTickets.length > 0 ? `1 Urgente (Dpto 302 fuga de agua)` : `Sin incidencias críticas`}
+        icon={<Wrench className="w-4 h-4 text-amber-600" />}
         progress={{
           value: (openTickets.length / 5) * 100,
-          colorClass: urgentTickets.length > 0 ? 'bg-rose-500' : 'bg-amber-400',
+          colorClass: urgentTickets.length > 0 ? 'bg-rose-600' : 'bg-amber-600',
         }}
         badge={
           urgentTickets.length > 0 ? (
@@ -106,7 +103,6 @@ export const MetricGrid: React.FC = () => {
             </Badge>
           )
         }
-        highlightColor={urgentTickets.length > 0 ? 'rose' : 'amber'}
         onClick={() => setActivePage('maintenance')}
       />
     </div>

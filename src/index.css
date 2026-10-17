@@ -4,15 +4,15 @@
 
 @layer base {
   * {
-    border-color: theme('colors.slate.800');
+    border-color: theme('colors.slate.200');
   }
 
   body {
-    background-color: theme('colors.slate.950');
-    color: theme('colors.slate.100');
+    background-color: #f8fafc;
+    color: #1e293b;
   }
 
-  /* Custom scrollbar for data tables and kanban */
+  /* Refined light scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -21,17 +21,17 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: theme('colors.slate.800');
+    background: #cbd5e1;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: theme('colors.slate.700');
+    background: #94a3b8;
   }
 }
 
 @keyframes pulse-subtle {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+  50% { opacity: 0.5; }
 }
 
 .animate-pulse-subtle {

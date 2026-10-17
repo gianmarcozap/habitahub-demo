@@ -16,7 +16,6 @@ export const QuickSearchModal: React.FC = () => {
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Global keyboard shortcut Cmd+K or Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -31,7 +30,6 @@ export const QuickSearchModal: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isQuickSearchOpen, setQuickSearchOpen]);
 
-  // Focus input on open
   useEffect(() => {
     if (isQuickSearchOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
@@ -59,7 +57,7 @@ export const QuickSearchModal: React.FC = () => {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-slate-900/40 backdrop-blur-xs animate-in fade-in duration-150"
     >
       <div
         className="fixed inset-0"
@@ -67,29 +65,28 @@ export const QuickSearchModal: React.FC = () => {
         aria-hidden="true"
       />
 
-      <div className="relative w-full max-w-xl bg-slate-900 border border-slate-800 rounded-xl shadow-2xl overflow-hidden z-10 flex flex-col">
+      <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-xl shadow-2xl overflow-hidden z-10 flex flex-col">
         {/* Search Input Box */}
-        <div className="flex items-center px-4 border-b border-slate-800 bg-slate-900/90">
+        <div className="flex items-center px-4 border-b border-slate-200 bg-white">
           <Search className="w-4 h-4 text-slate-400 shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar por unidad (ej. 302), inquilino, o acción..."
-            className="w-full bg-transparent px-3 py-3.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none"
+            placeholder="Buscar unidad (ej. 302), inquilino o acción..."
+            className="w-full bg-transparent px-3 py-3.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none"
           />
-          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
+          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-200 shadow-xs">
             ESC
           </kbd>
         </div>
 
         {/* Results List */}
-        <div className="max-h-96 overflow-y-auto p-2 space-y-4">
-          {/* Quick Actions (always accessible if query is short or matches) */}
+        <div className="max-h-96 overflow-y-auto p-2 space-y-3">
           {(!q || 'registrar pago nuevo ticket'.includes(q)) && (
             <div>
-              <div className="px-3 py-1 text-[10px] font-mono font-medium text-slate-500 uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
                 Acciones Rápidas
               </div>
               <button
@@ -97,34 +94,33 @@ export const QuickSearchModal: React.FC = () => {
                   setQuickSearchOpen(false);
                   openRecordPaymentModal();
                 }}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-slate-800 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-800 hover:bg-slate-50 transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <Receipt className="w-4 h-4 text-emerald-400" />
-                  <span>Registrar Pago de Arrendamiento</span>
+                  <Receipt className="w-4 h-4 text-emerald-600" />
+                  <span>Registrar Cobro de Arrendamiento</span>
                 </div>
-                <CornerDownLeft className="w-3.5 h-3.5 text-slate-500" />
+                <CornerDownLeft className="w-3.5 h-3.5 text-slate-400" />
               </button>
               <button
                 onClick={() => {
                   setQuickSearchOpen(false);
                   openNewTicketModal();
                 }}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-slate-800 transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-800 hover:bg-slate-50 transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <Wrench className="w-4 h-4 text-amber-400" />
-                  <span>Crear Nuevo Ticket de Mantenimiento</span>
+                  <Wrench className="w-4 h-4 text-amber-600" />
+                  <span>Crear Ticket de Mantenimiento</span>
                 </div>
-                <CornerDownLeft className="w-3.5 h-3.5 text-slate-500" />
+                <CornerDownLeft className="w-3.5 h-3.5 text-slate-400" />
               </button>
             </div>
           )}
 
-          {/* Units */}
           {matchingUnits.length > 0 && (
             <div>
-              <div className="px-3 py-1 text-[10px] font-mono font-medium text-slate-500 uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
                 Unidades ({matchingUnits.length})
               </div>
               <div className="space-y-0.5">
@@ -136,14 +132,14 @@ export const QuickSearchModal: React.FC = () => {
                       setActivePage('units');
                       openUnitDetail(u.id);
                     }}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-slate-800 transition-colors"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-800 hover:bg-slate-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
                       <Building className="w-3.5 h-3.5 text-slate-400" />
-                      <span className="font-semibold text-emerald-400">Dpto {u.unitNumber}</span>
-                      <span className="text-slate-400">· Piso {u.floor} ({u.typology})</span>
+                      <span className="font-semibold text-slate-900">Dpto {u.unitNumber}</span>
+                      <span className="text-slate-500">· Piso {u.floor} ({u.typology})</span>
                     </div>
-                    <span className="text-[11px] font-mono text-slate-400">
+                    <span className="text-[11px] font-mono text-emerald-700 font-medium">
                       ${u.monthlyRent}/mes
                     </span>
                   </button>
@@ -152,10 +148,9 @@ export const QuickSearchModal: React.FC = () => {
             </div>
           )}
 
-          {/* Tenants */}
           {matchingTenants.length > 0 && (
             <div>
-              <div className="px-3 py-1 text-[10px] font-mono font-medium text-slate-500 uppercase tracking-wider">
+              <div className="px-3 py-1 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
                 Inquilinos ({matchingTenants.length})
               </div>
               <div className="space-y-0.5">
@@ -166,25 +161,24 @@ export const QuickSearchModal: React.FC = () => {
                       setQuickSearchOpen(false);
                       setActivePage('units');
                     }}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-slate-800 transition-colors"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-800 hover:bg-slate-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
                       <User className="w-3.5 h-3.5 text-slate-400" />
-                      <span className="font-medium text-slate-200">{t.fullName}</span>
-                      <span className="text-slate-500 text-[11px]">{t.phone}</span>
+                      <span className="font-medium text-slate-900">{t.fullName}</span>
+                      <span className="text-slate-400 text-[11px]">{t.phone}</span>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
                   </button>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Maintenance Tickets */}
           {matchingTickets.length > 0 && (
             <div>
-              <div className="px-3 py-1 text-[10px] font-mono font-medium text-slate-500 uppercase tracking-wider">
-                Incidencias & Tickets ({matchingTickets.length})
+              <div className="px-3 py-1 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
+                Incidencias ({matchingTickets.length})
               </div>
               <div className="space-y-0.5">
                 {matchingTickets.slice(0, 3).map((tk) => (
@@ -194,16 +188,18 @@ export const QuickSearchModal: React.FC = () => {
                       setQuickSearchOpen(false);
                       setActivePage('maintenance');
                     }}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-200 hover:bg-slate-800 transition-colors"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs text-slate-800 hover:bg-slate-50 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
-                      <Wrench className="w-3.5 h-3.5 text-amber-400" />
-                      <span className="font-medium text-slate-200 truncate max-w-xs">{tk.title}</span>
-                      <span className="text-slate-500 text-[11px]">Unidad {tk.unitNumber}</span>
+                      <Wrench className="w-3.5 h-3.5 text-amber-500" />
+                      <span className="font-medium text-slate-900 truncate max-w-xs">{tk.title}</span>
+                      <span className="text-slate-500 text-[11px]">Dpto {tk.unitNumber}</span>
                     </div>
                     <span
                       className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
-                        tk.priority === 'urgent' ? 'bg-rose-950 text-rose-400 border border-rose-800' : 'bg-slate-800 text-slate-400'
+                        tk.priority === 'urgent'
+                          ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                          : 'bg-slate-100 text-slate-700'
                       }`}
                     >
                       {tk.priority.toUpperCase()}
@@ -213,20 +209,12 @@ export const QuickSearchModal: React.FC = () => {
               </div>
             </div>
           )}
-
-          {matchingUnits.length === 0 && matchingTenants.length === 0 && matchingTickets.length === 0 && q && (
-            <div className="py-8 text-center text-xs text-slate-500">
-              No se encontraron resultados para "{query}"
-            </div>
-          )}
         </div>
 
         {/* Footer Hint */}
-        <div className="px-4 py-2 border-t border-slate-800/80 bg-slate-900/60 text-[10px] text-slate-500 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span>Navegación rápida de Edificio Las Acacias</span>
-          </div>
-          <span className="font-mono">HabitaHub Pro In-Memory PMS</span>
+        <div className="px-4 py-2.5 border-t border-slate-100 bg-slate-50 text-[11px] text-slate-500 flex items-center justify-between">
+          <span>Navegación del Edificio Las Acacias</span>
+          <span className="font-medium">HabitaHub PMS</span>
         </div>
       </div>
     </div>

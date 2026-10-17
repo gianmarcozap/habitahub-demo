@@ -15,19 +15,19 @@ export const PaymentSummaryBanner: React.FC = () => {
   const delinquentCount = financialSummary?.delinquentUnits.length || 2;
 
   return (
-    <div className="p-6 rounded-xl bg-slate-900 border border-slate-800 shadow-sm space-y-6">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+    <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-6">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-100 pb-5">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-emerald-950/80 border border-emerald-800/60 text-emerald-400">
+          <div className="flex items-center gap-2.5">
+            <span className="p-2 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
               <TrendingUp className="w-4 h-4" />
             </span>
-            <h2 className="text-base font-bold text-slate-100">
+            <h2 className="text-base font-bold text-slate-900">
               Estado Financiero & Balance de Cobranzas
             </h2>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Octubre 2026 · Edificio Las Acacias · Conciliación bancaria y cartera morosa
+          <p className="text-xs text-slate-500 mt-1">
+            Octubre 2026 · Edificio Las Acacias · Conciliación de ingresos mensuales y cartera en mora.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export const PaymentSummaryBanner: React.FC = () => {
           <Button
             variant="primary"
             size="sm"
-            leftIcon={<CreditCard className="w-3.5 h-3.5 text-slate-950" />}
+            leftIcon={<CreditCard className="w-3.5 h-3.5 text-white" />}
             onClick={() => openRecordPaymentModal()}
           >
             Registrar Cobro de Arriendo
@@ -44,14 +44,14 @@ export const PaymentSummaryBanner: React.FC = () => {
       </div>
 
       {/* KPI Cards Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
         {/* Expected */}
-        <div className="p-4 rounded-xl bg-slate-850/80 border border-slate-800">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span>MRR Facturado / Proyectado</span>
+        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div className="flex items-center justify-between text-xs text-slate-500">
+            <span>MRR Presupuestado</span>
             <DollarSign className="w-4 h-4 text-slate-400" />
           </div>
-          <div className="mt-2 text-2xl font-bold font-mono text-slate-100">
+          <div className="mt-2 text-2xl font-bold font-mono text-slate-900">
             ${expected.toLocaleString()}
           </div>
           <p className="text-[11px] text-slate-500 mt-1">
@@ -60,40 +60,40 @@ export const PaymentSummaryBanner: React.FC = () => {
         </div>
 
         {/* Collected */}
-        <div className="p-4 rounded-xl bg-slate-850/80 border border-emerald-900/40">
-          <div className="flex items-center justify-between text-xs text-slate-400">
+        <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200">
+          <div className="flex items-center justify-between text-xs text-emerald-800">
             <span>Recaudación Efectiva</span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           </div>
-          <div className="mt-2 text-2xl font-bold font-mono text-emerald-400">
+          <div className="mt-2 text-2xl font-bold font-mono text-emerald-800">
             ${collected.toLocaleString()}
           </div>
           <div className="mt-2 flex items-center gap-2">
-            <div className="flex-1 bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div className="flex-1 bg-emerald-200/80 rounded-full h-1.5 overflow-hidden">
               <div
-                className="bg-emerald-400 h-full rounded-full"
+                className="bg-emerald-600 h-full rounded-full"
                 style={{ width: `${collectionRate}%` }}
               />
             </div>
-            <span className="text-xs font-mono font-semibold text-emerald-300">
+            <span className="text-xs font-mono font-semibold text-emerald-800">
               {collectionRate}%
             </span>
           </div>
         </div>
 
         {/* Delinquent */}
-        <div className="p-4 rounded-xl bg-slate-850/80 border border-rose-900/40">
-          <div className="flex items-center justify-between text-xs text-slate-400">
+        <div className="p-4 rounded-xl bg-rose-50/60 border border-rose-200">
+          <div className="flex items-center justify-between text-xs text-rose-800">
             <span>Saldo en Mora (&gt;15 días)</span>
-            <AlertTriangle className="w-4 h-4 text-rose-400" />
+            <AlertTriangle className="w-4 h-4 text-rose-600" />
           </div>
-          <div className="mt-2 text-2xl font-bold font-mono text-rose-400">
+          <div className="mt-2 text-2xl font-bold font-mono text-rose-700">
             ${overdue.toLocaleString()}
           </div>
-          <p className="text-[11px] text-rose-300/90 mt-1 flex items-center gap-1">
+          <p className="text-[11px] text-rose-800 mt-1 flex items-center gap-1">
             <span>{delinquentCount} inquilinos morosos</span>
             <span>·</span>
-            <span className="font-mono">{delinquencyRate}% cartera vencida</span>
+            <span className="font-mono font-semibold">{delinquencyRate}% cartera vencida</span>
           </p>
         </div>
       </div>

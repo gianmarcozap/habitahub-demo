@@ -16,18 +16,18 @@ export const MaintenancePage: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800/80 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold tracking-tight text-slate-100">
-              Mesa de Mantenimiento & Tickets Operativos
+          <div className="flex items-center gap-2.5">
+            <h1 className="text-xl font-bold tracking-tight text-slate-900">
+              Mesa de Mantenimiento & Incidencias
             </h1>
-            <span className="text-xs px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono border border-slate-700/60">
-              Kanban 3 Columnas
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium border border-slate-200 font-mono">
+              Tablero Kanban
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Tablero de incidencias técnicas por departamento y áreas comunes con progresión de estado en un clic.
+          <p className="text-xs text-slate-500 mt-1">
+            Seguimiento operativo de reparaciones en departamentos y áreas comunes de Edificio Las Acacias.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export const MaintenancePage: React.FC = () => {
           <Button
             variant="primary"
             size="sm"
-            leftIcon={<Plus className="w-3.5 h-3.5 text-slate-950" />}
+            leftIcon={<Plus className="w-3.5 h-3.5 text-white" />}
             onClick={() => openNewTicketModal()}
           >
             Nueva Incidencia
@@ -44,44 +44,44 @@ export const MaintenancePage: React.FC = () => {
       </div>
 
       {/* Mini Summary Counters */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-lg bg-rose-950/80 border border-rose-800/60 text-rose-400">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-rose-50 text-rose-700 border border-rose-200">
               <AlertTriangle className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs text-slate-400">Tickets Críticos / Urgentes</span>
-              <div className="text-sm font-bold font-mono text-rose-400">{urgentCount} Activo</div>
+              <span className="text-xs text-slate-500">Tickets Críticos / Urgentes</span>
+              <div className="text-sm font-bold font-mono text-rose-700">{urgentCount} Activo</div>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-slate-500">Unidad 302</span>
+          <span className="text-[11px] font-mono text-slate-400">Dpto 302</span>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-lg bg-blue-950/80 border border-blue-800/60 text-blue-400">
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-blue-50 text-blue-700 border border-blue-200">
               <Wrench className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs text-slate-400">En Atención Técnica</span>
-              <div className="text-sm font-bold font-mono text-blue-400">{inProgressCount} En Progreso</div>
+              <span className="text-xs text-slate-500">En Atención Técnica</span>
+              <div className="text-sm font-bold font-mono text-blue-700">{inProgressCount} En Progreso</div>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-slate-500">Contratistas</span>
+          <span className="text-[11px] font-mono text-slate-400">Cuadrilla</span>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-lg bg-emerald-950/80 border border-emerald-800/60 text-emerald-400">
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
               <CheckCircle className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs text-slate-400">Incidencias Resueltas</span>
-              <div className="text-sm font-bold font-mono text-emerald-400">{resolvedCount} Conformes</div>
+              <span className="text-xs text-slate-500">Incidencias Resueltas</span>
+              <div className="text-sm font-bold font-mono text-emerald-700">{resolvedCount} Conformes</div>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-slate-500">Histórico</span>
+          <span className="text-[11px] font-mono text-slate-400">Histórico</span>
         </div>
       </div>
 

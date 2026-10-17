@@ -26,21 +26,21 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
       id: 'reported',
       title: 'Reportados / Backlog',
       description: 'Averías recibidas pendientes de asignación técnica',
-      icon: <AlertCircle className="w-4 h-4 text-amber-400" />,
+      icon: <AlertCircle className="w-4 h-4 text-amber-600" />,
       badgeVariant: 'amber',
     },
     {
       id: 'in_progress',
       title: 'En Atención / Progreso',
-      description: 'Cuadrilla técnica o contratista asignado en sitio',
-      icon: <Clock className="w-4 h-4 text-blue-400" />,
+      description: 'Técnico o contratista asignado en sitio',
+      icon: <Clock className="w-4 h-4 text-blue-600" />,
       badgeVariant: 'blue',
     },
     {
       id: 'resolved',
       title: 'Resueltos / Cerrados',
-      description: 'Conformidad de inquilino y cierre de ticket',
-      icon: <CheckCircle2 className="w-4 h-4 text-emerald-400" />,
+      description: 'Conformidad de inquilino y cierre de orden',
+      icon: <CheckCircle2 className="w-4 h-4 text-emerald-600" />,
       badgeVariant: 'emerald',
     },
   ];
@@ -53,13 +53,13 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
         return (
           <div
             key={col.id}
-            className="rounded-xl bg-slate-900/80 border border-slate-800 p-4 space-y-4 shadow-sm flex flex-col min-h-[500px]"
+            className="rounded-xl bg-slate-50/80 border border-slate-200 p-4.5 space-y-4 shadow-xs flex flex-col min-h-[500px]"
           >
             {/* Column Header */}
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
               <div className="flex items-center gap-2">
                 {col.icon}
-                <span className="text-xs font-bold text-slate-100">
+                <span className="text-xs font-bold text-slate-900">
                   {col.title}
                 </span>
               </div>
@@ -69,7 +69,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
             </div>
 
             {/* Column Subtitle */}
-            <p className="text-[11px] text-slate-400 leading-tight">
+            <p className="text-[11px] text-slate-500 leading-tight">
               {col.description}
             </p>
 
@@ -85,7 +85,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
               ))}
 
               {columnTickets.length === 0 && (
-                <div className="p-8 text-center rounded-lg border border-dashed border-slate-800 text-xs text-slate-500 space-y-2">
+                <div className="p-8 text-center rounded-lg border border-dashed border-slate-200 text-xs text-slate-400 space-y-2">
                   <p>Sin incidencias en esta columna</p>
                 </div>
               )}
@@ -94,9 +94,9 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({ tickets }) => {
             {/* Column Footer Quick Add */}
             {col.id === 'reported' && (
               <Button
-                variant="outline"
+                variant="secondary"
                 size="sm"
-                className="w-full justify-center text-xs border-dashed text-slate-400 hover:text-slate-200"
+                className="w-full justify-center text-xs border-dashed text-slate-600 hover:text-slate-900 shadow-xs"
                 leftIcon={<Plus className="w-3.5 h-3.5" />}
                 onClick={() => openNewTicketModal()}
               >
