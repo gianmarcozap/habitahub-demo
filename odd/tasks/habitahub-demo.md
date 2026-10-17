@@ -15,16 +15,16 @@ PropTech Property Management System (PMS) interactive client-side demo with Hexa
 - **S11**: "Screen: Maintenance & Incidents (/maintenance): Kanban Board Layout: 3 Columns (Reported / Backlog, In Progress, Resolved). Ticket Card: Title, Unit tag (e.g., Unit 302), Reporter name, Priority tag (Urgent, Medium, Low), and Created timestamp. Interactive Features: Drag-and-drop or single-click status progression button (Move to In Progress -> Resolve). Button '+ New Ticket' opening a modal to submit an incident associated with any unit."
 
 ## Tasks
-- [x] T1: Project scaffolding (Vite + React 19 + TypeScript + Tailwind CSS + Lucide Icons + Recharts + Zustand) | S1, S4 | inline | done
-- [x] T2: Domain modeling & Hexagonal architecture ports (Unit, Tenant, LeaseContract, PaymentTransaction, MaintenanceTicket, Ports) | S2, S3 | inline | done
-- [x] T3: In-memory mock adapter, realistic Las Acacias seed data & latency simulation (150ms) | S2, S5, S6 | inline | done
-- [x] T4: Zustand store with reactive state, actions, and atomic 'Reset Demo' lifecycle | S2, S5 | inline | done
-- [x] T5: Top navigation, property selector, quick search (Cmd+K modal), and Demo status bar ribbon | S4, S7 | inline | done
-- [x] T6: Executive Dashboard view (KPI cards, Recharts 6-month cashflow/occupancy chart, Urgent Actions Feed with modal/drawer deep-links) | S4, S8 | inline | done
-- [x] T7: Units & Leases view (Floor filters 1-5, status filters, Grid/Table view toggle, Unit Detail Drawer with PDF simulated download and actions) | S4, S9 | inline | done
-- [x] T8: Financials & Delinquency Ledger view (Summary banner, Ledger table, Record Payment modal with 150ms delay and live MRR/occupancy reactivity) | S4, S10 | inline | done
-- [x] T9: Maintenance & Incidents view (Kanban 3-column board, ticket priority chips, status progression, New Ticket modal) | S4, S11 | inline | done
-- [/] T10: Final polish, responsive testing, TypeScript typecheck, production build verification | S1, S4 | inline | in_progress
+- [x] T1: Project scaffolding (Vite + React 19 + TypeScript + Tailwind CSS + Lucide Icons + Recharts + Zustand) | S1, S4 | inline | commit 1967045
+- [x] T2: Domain modeling & Hexagonal architecture ports (Unit, Tenant, LeaseContract, PaymentTransaction, MaintenanceTicket, Ports) | S2, S3 | inline | commit 1967045
+- [x] T3: In-memory mock adapter, realistic Las Acacias seed data & latency simulation (150ms) | S2, S5, S6 | inline | commit 1967045
+- [x] T4: Zustand store with reactive state, actions, and atomic 'Reset Demo' lifecycle | S2, S5 | inline | commit 8f2b908
+- [x] T5: Top navigation, property selector, quick search (Cmd+K modal), and Demo status bar ribbon | S4, S7 | inline | commit 8f2b908
+- [x] T6: Executive Dashboard view (KPI cards, Recharts 6-month cashflow/occupancy chart, Urgent Actions Feed with modal/drawer deep-links) | S4, S8 | inline | commit 8f2b908
+- [x] T7: Units & Leases view (Floor filters 1-5, status filters, Grid/Table view toggle, Unit Detail Drawer with PDF simulated download and actions) | S4, S9 | inline | commit 8f2b908
+- [x] T8: Financials & Delinquency Ledger view (Summary banner, Ledger table, Record Payment modal with 150ms delay and live MRR/occupancy reactivity) | S4, S10 | inline | commit 8f2b908
+- [x] T9: Maintenance & Incidents view (Kanban 3-column board, ticket priority chips, status progression, New Ticket modal) | S4, S11 | inline | commit 8f2b908
+- [x] T10: Final polish, responsive testing, TypeScript typecheck, production build verification | S1, S4 | inline | commit 8f2b908
 
 ## Log
 - L1: User provided Master Prompt for HabitaHub Pro production-grade interactive portfolio demo with Hexagonal architecture, Linear/Stripe design benchmark, 20-unit Las Acacias seed, Dashboard, Units, Payments, and Maintenance Kanban.
