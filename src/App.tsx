@@ -25,35 +25,35 @@ export default function App() {
   }, [fetchInitialData]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans selection:bg-emerald-500/20 selection:text-emerald-900">
-      {/* Main Top Navigation Header */}
-      <Topbar onToggleMobileMenu={() => setMobileMenuOpen(!mobileMenuOpen)} />
+    <div className="h-screen w-screen bg-slate-50 text-slate-800 flex overflow-hidden font-sans selection:bg-emerald-500/20 selection:text-emerald-900">
+      {/* 1. Left Full-Height Sidebar (Desktop) */}
+      <div className="hidden lg:block shrink-0 h-screen">
+        <Sidebar />
+      </div>
 
-      {/* Main App Body Shell */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Desktop Sidebar */}
-        <div className="hidden lg:block shrink-0">
-          <Sidebar />
-        </div>
-
-        {/* Mobile Sidebar Overlay Drawer */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 lg:hidden flex">
-            <div
-              className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            <div className="relative w-64 bg-white h-full shadow-2xl z-10">
-              <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
-            </div>
+      {/* 2. Mobile Sidebar Drawer Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex animate-in fade-in duration-150">
+          <div
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="relative w-64 bg-white h-full shadow-2xl z-10">
+            <Sidebar onNavigate={() => setMobileMenuOpen(false)} />
           </div>
-        )}
+        </div>
+      )}
+
+      {/* 3. Right Area (Topbar + Main Content Viewport) */}
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+        {/* Topbar: Spans only the right side on desktop, starting next to Sidebar */}
+        <Topbar onToggleMobileMenu={() => setMobileMenuOpen(!mobileMenuOpen)} />
 
         {/* Content Viewport */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-          <main className="flex-1 p-5 md:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6">
+          <div className="max-w-7xl mx-auto h-full flex flex-col">
             {isLoading ? (
-              <div className="min-h-[500px] flex flex-col items-center justify-center gap-3 text-slate-400">
+              <div className="h-full min-h-[400px] flex flex-col items-center justify-center gap-3 text-slate-400">
                 <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
                 <p className="text-xs font-mono text-slate-500">Cargando inventario de Edificio Las Acacias...</p>
               </div>
@@ -65,8 +65,8 @@ export default function App() {
                 {activePage === 'maintenance' && <MaintenancePage />}
               </>
             )}
-          </main>
-        </div>
+          </div>
+        </main>
       </div>
 
       {/* Global Modals & Overlays */}

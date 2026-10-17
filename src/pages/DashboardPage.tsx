@@ -12,24 +12,24 @@ export const DashboardPage: React.FC = () => {
   const openNewTicketModal = usePropertyStore((state) => state.openNewTicketModal);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3.5 sm:space-y-4">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200 pb-3">
         <div>
-          <div className="flex items-center gap-2.5">
-            <h1 className="text-xl font-bold tracking-tight text-slate-900">
+          <div className="flex items-center gap-2">
+            <h1 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
               Panel Ejecutivo de Operaciones
             </h1>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium border border-slate-200">
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium border border-slate-200">
               En Tiempo Real
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-[11px] text-slate-500 mt-0.5">
             {selectedProperty} · Ocupación, cobranzas y estado general de mantenimiento.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Button
             variant="secondary"
             size="sm"
@@ -53,7 +53,7 @@ export const DashboardPage: React.FC = () => {
       <MetricGrid />
 
       {/* Interactive 65% / 35% Split Layout */}
-      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+      <div className="flex flex-col lg:flex-row gap-4 items-stretch">
         <div className="w-full lg:w-[65%]">
           <CashflowChart />
         </div>
