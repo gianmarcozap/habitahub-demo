@@ -7,7 +7,11 @@ import {
 } from 'lucide-react';
 import { usePropertyStore, NavigationPage } from '../../store/usePropertyStore';
 
-export const Sidebar: React.FC = () => {
+export interface SidebarProps {
+  onNavigate?: () => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
   const activePage = usePropertyStore((state) => state.activePage);
   const setActivePage = usePropertyStore((state) => state.setActivePage);
   const payments = usePropertyStore((state) => state.payments);
@@ -15,6 +19,11 @@ export const Sidebar: React.FC = () => {
 
   const delinquentCount = payments.filter((p) => p.status === 'overdue').length;
   const urgentTicketsCount = tickets.filter((t) => t.priority === 'urgent' && t.status !== 'resolved').length;
+
+  const handleNavClick = (page: NavigationPage) => {
+    setActivePage(page);
+    if (onNavigate) onNavigate();
+  };
 
   const navItems: Array<{
     id: NavigationPage;
@@ -29,18 +38,18 @@ export const Sidebar: React.FC = () => {
     },
     {
       id: 'units',
-      label: 'Unidades & Contratos',
+      label: 'Unidades y Contratos',
       icon: <Building2 className="w-4 h-4" />,
     },
     {
       id: 'payments',
-      label: 'Finanzas & Morosidad',
+      label: 'Cobranzas y Morosidad',
       icon: <DollarSign className="w-4 h-4" />,
       badge: delinquentCount > 0 ? { count: delinquentCount, variant: 'rose' } : undefined,
     },
     {
       id: 'maintenance',
-      label: 'Mantenimiento & Incidencias',
+      label: 'Mantenimiento e Incidencias',
       icon: <Wrench className="w-4 h-4" />,
       badge: urgentTicketsCount > 0 ? { count: urgentTicketsCount, variant: 'rose' } : undefined,
     },
@@ -51,13 +60,13 @@ export const Sidebar: React.FC = () => {
       <div>
         {/* Brand Header */}
         <div className="h-16 px-6 flex items-center gap-3 border-b border-slate-200">
-          <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-sm">
-            <Building2 className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-xs">
+            <Building2 className="w-4 h-4 text-white" />
           </div>
           <div>
             <div className="text-sm font-bold tracking-tight text-slate-900 flex items-center gap-1.5">
               <span>HabitaHub</span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200">
                 PMS
               </span>
             </div>
@@ -76,11 +85,11 @@ export const Sidebar: React.FC = () => {
             return (
               <button
                 key={item.id}
-                onClick={() => setActivePage(item.id)}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs transition-all ${
+                onClick={() => handleNavClick(item.id)}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-slate-100 text-slate-900 font-semibold border-r-2 border-emerald-600'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    ? 'bg-emerald-50 text-emerald-800 font-medium rounded-lg border-r-2 border-emerald-600 shadow-xs'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -107,7 +116,7 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      {/* Clean Commercial Footer (ZERO jargon) */}
+      {/* Clean Commercial Footer */}
       <div className="p-4 border-t border-slate-200 bg-slate-50/50">
         <div className="flex items-center justify-between text-[11px] text-slate-500">
           <span className="font-medium text-slate-700">Edificio Las Acacias</span>

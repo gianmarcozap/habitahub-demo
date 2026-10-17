@@ -25,7 +25,7 @@ export const UnitCard: React.FC<UnitCardProps> = ({
     },
     vacant: {
       label: 'Disponible',
-      variant: 'blue' as const,
+      variant: 'slate' as const,
       pulse: false,
     },
     maintenance: {
@@ -92,8 +92,8 @@ export const UnitCard: React.FC<UnitCardProps> = ({
               )}
             </div>
           ) : unit.status === 'vacant' ? (
-            <div className="py-1 text-xs text-blue-700 font-medium flex items-center gap-1.5">
-              <FileCheck className="w-4 h-4 text-blue-600" />
+            <div className="py-1 text-xs text-slate-600 font-medium flex items-center gap-1.5">
+              <FileCheck className="w-4 h-4 text-slate-500" />
               <span>Listo para visitas & arriendo</span>
             </div>
           ) : (

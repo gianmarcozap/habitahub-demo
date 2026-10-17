@@ -15,7 +15,7 @@ export const UrgentActionFeed: React.FC = () => {
   const delinquentUnits = financialSummary?.delinquentUnits || [];
 
   return (
-    <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between h-full">
+    <div className="p-6 rounded-xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
           <div className="flex items-center gap-2.5">
@@ -23,14 +23,14 @@ export const UrgentActionFeed: React.FC = () => {
               <AlertCircle className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
-                <span>Acciones Prioritarias</span>
+              <h3 className="text-sm font-semibold text-slate-900 tracking-tight flex items-center gap-2">
+                <span>Acciones Urgentes Requeridas</span>
                 <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-rose-50 text-rose-700 border border-rose-200">
                   {delinquentUnits.length + renewalAlerts.length + (urgentTicket ? 1 : 0)} Pendientes
                 </span>
               </h3>
               <p className="text-xs text-slate-500">
-                Cobranzas vencidas, renovaciones y mantenimiento urgente
+                Cobranzas vencidas, renovaciones y averías prioritarias
               </p>
             </div>
           </div>
@@ -39,9 +39,9 @@ export const UrgentActionFeed: React.FC = () => {
         <div className="space-y-3">
           {/* Urgent Maintenance Ticket */}
           {urgentTicket && (
-            <div className="p-3.5 rounded-lg bg-rose-50/60 border border-rose-200 flex items-start justify-between gap-3 group hover:border-rose-300 transition-colors">
+            <div className="p-3.5 rounded-lg bg-white border border-rose-200/90 shadow-xs flex items-start justify-between gap-3 group hover:border-rose-300 transition-colors">
               <div className="flex items-start gap-3">
-                <div className="p-1.5 rounded-md bg-white border border-rose-200 text-rose-600 mt-0.5">
+                <div className="p-1.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200 mt-0.5">
                   <Wrench className="w-3.5 h-3.5" />
                 </div>
                 <div>
@@ -56,16 +56,16 @@ export const UrgentActionFeed: React.FC = () => {
                   <p className="text-[11px] text-slate-600 mt-0.5 line-clamp-1">
                     {urgentTicket.description}
                   </p>
-                  <span className="text-[10px] text-slate-500 font-sans">
-                    Técnico asignado: {urgentTicket.assignedTechnician}
+                  <span className="text-[10px] text-slate-400 font-sans">
+                    Técnico: {urgentTicket.assignedTechnician}
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setActivePage('maintenance')}
-                className="inline-flex items-center gap-1 text-[11px] font-medium text-rose-700 hover:text-rose-800 hover:underline shrink-0 mt-1 cursor-pointer"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-[11px] font-medium shrink-0 transition-colors shadow-2xs cursor-pointer mt-0.5"
               >
-                <span>Ver orden</span>
+                <span>Ver Ticket</span>
                 <ArrowRight className="w-3 h-3" />
               </button>
             </div>
@@ -75,10 +75,10 @@ export const UrgentActionFeed: React.FC = () => {
           {delinquentUnits.map((d) => (
             <div
               key={d.unitNumber}
-              className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-slate-300 transition-colors flex items-start justify-between gap-3"
+              className="p-3.5 rounded-lg bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 transition-colors flex items-start justify-between gap-3"
             >
               <div className="flex items-start gap-3">
-                <div className="p-1.5 rounded-md bg-white border border-rose-200 text-rose-600 mt-0.5">
+                <div className="p-1.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200 mt-0.5">
                   <DollarSign className="w-3.5 h-3.5" />
                 </div>
                 <div>
@@ -87,7 +87,7 @@ export const UrgentActionFeed: React.FC = () => {
                       Unidad {d.unitNumber} · {d.tenantName}
                     </span>
                     <Badge variant="rose" size="sm">
-                      {d.daysOverdue} días de mora
+                      {d.daysOverdue}d en mora
                     </Badge>
                   </div>
                   <p className="text-[11px] text-slate-600 mt-0.5">
@@ -100,7 +100,7 @@ export const UrgentActionFeed: React.FC = () => {
                   const unitId = d.unitNumber === '203' ? 'u-203' : 'u-402';
                   openRecordPaymentModal(unitId);
                 }}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-medium shrink-0 transition-colors shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-medium shrink-0 transition-colors shadow-xs cursor-pointer mt-0.5"
               >
                 <span>Cobrar</span>
                 <ArrowRight className="w-3 h-3" />
@@ -112,10 +112,10 @@ export const UrgentActionFeed: React.FC = () => {
           {renewalAlerts.map((alert) => (
             <div
               key={alert.leaseId}
-              className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-slate-300 transition-colors flex items-start justify-between gap-3"
+              className="p-3.5 rounded-lg bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 transition-colors flex items-start justify-between gap-3"
             >
               <div className="flex items-start gap-3">
-                <div className="p-1.5 rounded-md bg-white border border-amber-200 text-amber-600 mt-0.5">
+                <div className="p-1.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200 mt-0.5">
                   <Clock className="w-3.5 h-3.5" />
                 </div>
                 <div>
@@ -124,20 +124,20 @@ export const UrgentActionFeed: React.FC = () => {
                       Unidad {alert.unitNumber} · {alert.tenantName}
                     </span>
                     <Badge variant="amber" size="sm">
-                      Vence en {alert.daysRemaining} días
+                      Vence en {alert.daysRemaining}d
                     </Badge>
                   </div>
                   <p className="text-[11px] text-slate-600 mt-0.5">
-                    Término de contrato: {alert.endDate}.
+                    Fecha de término: {alert.endDate}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => openUnitDetail(alert.unitId)}
-                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-[11px] font-medium shrink-0 transition-colors shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-[11px] font-medium shrink-0 transition-colors shadow-xs cursor-pointer mt-0.5"
               >
-                <FileText className="w-3 h-3 text-slate-500" />
-                <span>Renovar</span>
+                <FileText className="w-3 h-3 text-slate-400" />
+                <span>Gestionar</span>
               </button>
             </div>
           ))}
@@ -145,8 +145,8 @@ export const UrgentActionFeed: React.FC = () => {
       </div>
 
       <div className="mt-3 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex items-center justify-between">
-        <span>Gestión directa de incidencias y cobranzas</span>
-        <span className="text-slate-400 font-mono">Las Acacias</span>
+        <span>Seguimiento directo en Edificio Las Acacias</span>
+        <span className="text-slate-400 font-mono text-[10px]">Actualizado</span>
       </div>
     </div>
   );

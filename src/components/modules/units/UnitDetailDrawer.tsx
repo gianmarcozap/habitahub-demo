@@ -103,7 +103,7 @@ Documento certificado por la administración de Edificio Las Acacias.
               unit.status === 'occupied'
                 ? 'emerald'
                 : unit.status === 'vacant'
-                ? 'blue'
+                ? 'slate'
                 : 'rose'
             }
             size="sm"

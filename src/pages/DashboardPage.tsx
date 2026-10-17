@@ -52,12 +52,12 @@ export const DashboardPage: React.FC = () => {
       {/* KPI Cards Grid */}
       <MetricGrid />
 
-      {/* Interactive Charts & Urgent Actions Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        <div className="lg:col-span-7">
+      {/* Interactive 65% / 35% Split Layout */}
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+        <div className="w-full lg:w-[65%]">
           <CashflowChart />
         </div>
-        <div className="lg:col-span-5">
+        <div className="w-full lg:w-[35%]">
           <UrgentActionFeed />
         </div>
       </div>

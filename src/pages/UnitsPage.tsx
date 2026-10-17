@@ -135,8 +135,8 @@ export const UnitsPage: React.FC = () => {
               onClick={() => setSelectedStatus('vacant')}
               className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 selectedStatus === 'vacant'
-                  ? 'bg-blue-50 text-blue-800 font-semibold'
-                  : 'text-slate-600 hover:text-blue-700'
+                  ? 'bg-slate-200 text-slate-900 font-semibold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               Disponibles ({vacantCount})

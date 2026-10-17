@@ -30,27 +30,27 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label })
     const collectionPct = expected > 0 ? Math.round((collected / expected) * 100) : 0;
 
     return (
-      <div className="bg-white border border-slate-200 shadow-md rounded-lg p-2.5 text-xs text-slate-800 font-sans min-w-[200px]">
+      <div className="bg-white border border-slate-200 shadow-lg rounded-xl p-3 text-xs text-slate-800 font-sans min-w-[210px]">
         <div className="text-slate-900 font-semibold border-b border-slate-100 pb-1.5 mb-2 flex items-center justify-between">
           <span>{label}</span>
-          <span className="text-emerald-700 font-mono text-[11px] font-medium">{occupancy}% Ocupación</span>
+          <span className="text-emerald-700 font-mono text-[11px] font-semibold">{occupancy}% Ocupación</span>
         </div>
-        <div className="space-y-1 font-mono">
+        <div className="space-y-1.5 font-mono">
           <div className="flex items-center justify-between">
             <span className="text-slate-500 flex items-center gap-1.5 font-sans">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-emerald-500" />
               Recaudado:
             </span>
             <span className="text-emerald-700 font-bold">${collected.toLocaleString()}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-slate-500 flex items-center gap-1.5 font-sans">
-              <span className="w-2 h-2 rounded-full bg-slate-300" />
-              Presupuestado:
+              <span className="w-2.5 h-2.5 rounded-sm bg-slate-200" />
+              Presupuesto:
             </span>
             <span className="text-slate-700 font-medium">${expected.toLocaleString()}</span>
           </div>
-          <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[11px] font-sans">
+          <div className="flex items-center justify-between pt-1.5 border-t border-slate-100 text-[11px] font-sans">
             <span className="text-slate-500">Eficiencia de cobro:</span>
             <span className={`font-semibold ${collectionPct >= 90 ? 'text-emerald-700' : 'text-amber-700'}`}>
               {collectionPct}%
@@ -67,19 +67,19 @@ export const CashflowChart: React.FC = () => {
   const historical = usePropertyStore((state) => state.historicalFinancials);
 
   return (
-    <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between h-full">
+    <div className="p-6 rounded-xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full">
       <div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
               <TrendingUp className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-slate-900">
-                Cobranza & Ocupación Histórica
+              <h3 className="text-sm font-semibold text-slate-900 tracking-tight">
+                Recaudación vs Presupuesto Histórico
               </h3>
               <p className="text-xs text-slate-500">
-                Últimos 6 meses · Comparativa de recaudación efectiva vs MRR presupuestado
+                Últimos 6 meses · Comparativa de cobranza real frente al presupuesto base
               </p>
             </div>
           </div>
@@ -90,8 +90,8 @@ export const CashflowChart: React.FC = () => {
               <span className="text-slate-700 font-medium">Cobrado</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-sm bg-slate-300" />
-              <span className="text-slate-500">Presupuestado</span>
+              <span className="w-2.5 h-2.5 rounded-sm bg-slate-200 border border-slate-300" />
+              <span className="text-slate-500">Presupuesto</span>
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@ export const CashflowChart: React.FC = () => {
               stroke="#64748b"
               fontSize={11}
               tickLine={false}
-              axisLine={{ stroke: '#cbd5e1' }}
+              axisLine={{ stroke: '#e2e8f0' }}
             />
             <YAxis
               stroke="#64748b"
@@ -116,7 +116,7 @@ export const CashflowChart: React.FC = () => {
               tickFormatter={(v) => `$${v / 1000}k`}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="expected" fill="#CBD5E1" radius={[4, 4, 0, 0]} barSize={22} name="Presupuestado" />
+            <Bar dataKey="expected" fill="#E2E8F0" radius={[4, 4, 0, 0]} barSize={22} name="Presupuesto" />
             <Bar dataKey="collected" fill="#10B981" radius={[4, 4, 0, 0]} barSize={22} name="Cobrado" />
           </BarChart>
         </ResponsiveContainer>
@@ -127,8 +127,8 @@ export const CashflowChart: React.FC = () => {
           <Calendar className="w-3.5 h-3.5 text-slate-400" />
           <span>Período actual: Octubre 2026</span>
         </span>
-        <span className="text-emerald-700 font-mono text-[11px] font-medium">
-          Promedio semestral: 86.7% ocupación
+        <span className="text-emerald-700 font-mono text-[11px] font-semibold">
+          Promedio: 86.7% ocupación
         </span>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, DollarSign, AlertCircle, Wrench } from 'lucide-react';
+import { Building2, DollarSign, AlertCircle, Wrench, TrendingUp } from 'lucide-react';
 import { StatCard } from '../../common/StatCard';
 import { Badge } from '../../common/Badge';
 import { usePropertyStore } from '../../../store/usePropertyStore';
@@ -17,26 +17,25 @@ export const MetricGrid: React.FC = () => {
 
   const expectedRev = financialSummary?.expectedRevenue || 18400;
   const collectedRev = financialSummary?.collectedRevenue || 16200;
-  const collectionRate = financialSummary ? Math.round((collectedRev / expectedRev) * 100) : 90;
+  const collectionRate = financialSummary ? Math.round((collectedRev / expectedRev) * 100) : 88;
 
   const delinquentRev = financialSummary?.delinquentRevenue || 2200;
-  const delinquencyRate = financialSummary?.delinquencyRate || 10;
   const delinquentCount = financialSummary?.delinquentUnits.length || 2;
 
   const openTickets = tickets.filter((t) => t.status !== 'resolved');
   const urgentTickets = openTickets.filter((t) => t.priority === 'urgent');
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-      {/* 1. Occupancy Rate */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* 1. Tasa de Ocupación */}
       <StatCard
         title="Tasa de Ocupación"
         value={`${occupancyPercentage}%`}
-        subValue={`${occupiedUnits} de ${totalUnits} unidades con contrato`}
+        subValue={`${occupiedUnits} de ${totalUnits} unidades`}
         icon={<Building2 className="w-4 h-4 text-emerald-600" />}
         progress={{
           value: occupancyPercentage,
-          colorClass: occupancyPercentage >= 80 ? 'bg-emerald-600' : 'bg-amber-600',
+          colorClass: 'bg-emerald-600',
         }}
         badge={
           <Badge variant="emerald" size="sm">
@@ -46,32 +45,33 @@ export const MetricGrid: React.FC = () => {
         onClick={() => setActivePage('units')}
       />
 
-      {/* 2. Monthly Revenue */}
+      {/* 2. Ingresos Recaudados (MRR) */}
       <StatCard
         title="Ingresos Recaudados (MRR)"
         value={`$${collectedRev.toLocaleString()}`}
-        subValue={`de $${expectedRev.toLocaleString()} presupuestados (${collectionRate}%)`}
+        subValue={`${collectionRate}% de $${expectedRev.toLocaleString()} esperados`}
         icon={<DollarSign className="w-4 h-4 text-emerald-600" />}
         progress={{
           value: collectionRate,
           colorClass: 'bg-emerald-600',
         }}
         badge={
-          <Badge variant="emerald" size="sm">
-            {collectionRate}% Cobrado
+          <Badge variant="emerald" size="sm" className="gap-1">
+            <TrendingUp className="w-3 h-3 text-emerald-600" />
+            <span>{collectionRate}% Cobrado</span>
           </Badge>
         }
         onClick={() => setActivePage('payments')}
       />
 
-      {/* 3. Delinquency Rate */}
+      {/* 3. Morosidad Acumulada */}
       <StatCard
-        title="Cartera en Mora"
+        title="Morosidad Acumulada"
         value={`$${delinquentRev.toLocaleString()}`}
-        subValue={`${delinquentCount} unidades con deuda >15 días (${delinquencyRate}%)`}
+        subValue={`${delinquentCount} unidades con deuda >15 días`}
         icon={<AlertCircle className="w-4 h-4 text-rose-600" />}
         progress={{
-          value: delinquencyRate * 4,
+          value: (delinquentRev / expectedRev) * 100 * 3,
           colorClass: 'bg-rose-600',
         }}
         badge={
@@ -82,11 +82,11 @@ export const MetricGrid: React.FC = () => {
         onClick={() => openRecordPaymentModal('u-203')}
       />
 
-      {/* 4. Active Incidents */}
+      {/* 4. Incidencias Activas */}
       <StatCard
-        title="Incidencias Operativas"
+        title="Incidencias Activas"
         value={`${openTickets.length} Abiertas`}
-        subValue={urgentTickets.length > 0 ? `1 Urgente (Dpto 302 fuga de agua)` : `Sin incidencias críticas`}
+        subValue={urgentTickets.length > 0 ? `1 Urgente (Dpto 302)` : `Sin averías críticas`}
         icon={<Wrench className="w-4 h-4 text-amber-600" />}
         progress={{
           value: (openTickets.length / 5) * 100,
@@ -95,7 +95,7 @@ export const MetricGrid: React.FC = () => {
         badge={
           urgentTickets.length > 0 ? (
             <Badge variant="rose" size="sm" pulse>
-              1 Crítico
+              1 Urgente
             </Badge>
           ) : (
             <Badge variant="amber" size="sm">

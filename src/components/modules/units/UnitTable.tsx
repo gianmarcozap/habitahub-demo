@@ -44,7 +44,7 @@ export const UnitTable: React.FC<UnitTableProps> = ({
 
               const statusBadge = {
                 occupied: <Badge variant="emerald" size="sm">Ocupado</Badge>,
-                vacant: <Badge variant="blue" size="sm">Disponible</Badge>,
+                vacant: <Badge variant="slate" size="sm">Disponible</Badge>,
                 maintenance: <Badge variant="rose" size="sm" pulse>Mantenimiento</Badge>,
               }[unit.status];
 
