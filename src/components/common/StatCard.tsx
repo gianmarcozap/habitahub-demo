@@ -25,41 +25,39 @@ export const StatCard: React.FC<StatCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`p-3.5 sm:p-4 rounded-xl bg-white border border-slate-200/90 shadow-xs transition-all duration-150 ${
-        onClick ? 'cursor-pointer hover:border-slate-300 hover:shadow-sm' : ''
+      className={`p-3 rounded-xl bg-white border border-slate-200/90 shadow-2xs transition-all duration-150 flex flex-col justify-between ${
+        onClick ? 'cursor-pointer hover:border-slate-300 hover:shadow-xs' : ''
       }`}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-slate-500">{title}</span>
-        <div className="flex items-center gap-2">
+        <span className="text-[11px] font-medium text-slate-500">{title}</span>
+        <div className="flex items-center gap-1.5">
           {badge}
-          <div className="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-600">
+          <div className="p-1 rounded-md bg-slate-50 border border-slate-200/80 text-slate-500">
             {icon}
           </div>
         </div>
       </div>
 
-      <div className="mt-2.5">
-        <div className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-mono">
+      <div className="flex items-baseline justify-between mt-1.5 gap-2">
+        <div className="text-xl font-bold tracking-tight text-slate-900 font-mono">
           {value}
         </div>
         {subValue && (
-          <p className="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1.5 truncate">
+          <p className="text-[11px] text-slate-400 font-sans truncate">
             {subValue}
           </p>
         )}
       </div>
 
       {progress && (
-        <div className="mt-2.5 pt-2 border-t border-slate-100">
-          <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-            <div
-              className={`h-full rounded-full transition-all duration-500 ${
-                progress.colorClass || 'bg-emerald-600'
-              }`}
-              style={{ width: `${Math.min(100, Math.max(0, progress.value))}%` }}
-            />
-          </div>
+        <div className="w-full bg-slate-100 rounded-full h-1 overflow-hidden mt-2">
+          <div
+            className={`h-full rounded-full transition-all duration-500 ${
+              progress.colorClass || 'bg-emerald-600'
+            }`}
+            style={{ width: `${Math.min(100, Math.max(0, progress.value))}%` }}
+          />
         </div>
       )}
     </div>

@@ -125,8 +125,8 @@ export const UnitsPage: React.FC = () => {
               onClick={() => setSelectedStatus('occupied')}
               className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 selectedStatus === 'occupied'
-                  ? 'bg-emerald-50 text-emerald-800 font-semibold'
-                  : 'text-slate-600 hover:text-emerald-700'
+                  ? 'bg-rose-50 text-rose-800 font-semibold'
+                  : 'text-slate-600 hover:text-rose-700'
               }`}
             >
               Ocupados ({occupiedCount})
@@ -135,7 +135,7 @@ export const UnitsPage: React.FC = () => {
               onClick={() => setSelectedStatus('vacant')}
               className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 selectedStatus === 'vacant'
-                  ? 'bg-slate-200 text-slate-900 font-semibold'
+                  ? 'bg-white text-slate-900 font-semibold shadow-2xs border border-slate-200'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -145,8 +145,8 @@ export const UnitsPage: React.FC = () => {
               onClick={() => setSelectedStatus('maintenance')}
               className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 selectedStatus === 'maintenance'
-                  ? 'bg-rose-50 text-rose-800 font-semibold'
-                  : 'text-slate-600 hover:text-rose-700'
+                  ? 'bg-amber-50 text-amber-800 font-semibold'
+                  : 'text-slate-600 hover:text-amber-700'
               }`}
             >
               Mantenimiento ({maintenanceCount})

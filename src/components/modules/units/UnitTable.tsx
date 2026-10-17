@@ -43,9 +43,9 @@ export const UnitTable: React.FC<UnitTableProps> = ({
               const lease = getLease(unit.currentLeaseId);
 
               const statusBadge = {
-                occupied: <Badge variant="emerald" size="sm">Ocupado</Badge>,
+                occupied: <Badge variant="rose" size="sm">Ocupado</Badge>,
                 vacant: <Badge variant="slate" size="sm">Disponible</Badge>,
-                maintenance: <Badge variant="rose" size="sm" pulse>Mantenimiento</Badge>,
+                maintenance: <Badge variant="amber" size="sm" pulse>Mantenimiento</Badge>,
               }[unit.status];
 
               return (

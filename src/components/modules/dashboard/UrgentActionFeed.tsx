@@ -36,7 +36,7 @@ export const UrgentActionFeed: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-2 overflow-y-auto max-h-[185px] sm:max-h-[210px] pr-1">
+        <div className="space-y-2 overflow-y-auto max-h-[240px] sm:max-h-[270px] pr-1">
           {/* Urgent Maintenance Ticket */}
           {urgentTicket && (
             <div className="p-2.5 rounded-lg bg-white border border-rose-200/90 shadow-2xs flex items-start justify-between gap-2.5 group hover:border-rose-300 transition-colors">
